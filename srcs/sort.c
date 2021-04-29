@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:13:50 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/04/26 22:31:04 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/04/27 17:26:43 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/push_swap.h"
+
+
+t_node		*find_min_address(t_stack *t)
+{
+	t_node *min;
+	t_node *tmp;
+
+	tmp = t->bot;
+	min = t->bot;
+	while (tmp != NULL)
+	{
+		if (min->val > tmp->val)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	return (min);
+}
 
 void		ret_min_max(t_stack *target, int *x, int *y)
 {
@@ -93,18 +110,159 @@ int		three_sort(t_sort *s, t_stack *target)
 
 int		divide(t_sort *s)
 {
-	s->pivot = s->a->bot;
+	if (s->a->bot != NULL)
+		s->pivot = s->a->bot;
 	while (1)
 	{
-		
-		if (s->pivot->val > s->a->top->val)
+		if (s->pivot->val < s->a->top->val)
 			pb(s);
-		else if (s->pivot->val < s->a->top->val)
-			rra(s);
+		else if (s->pivot->val > s->a->top->val)
+			ra(s);
 		if (s->a->top == s->pivot)
 			break ;
 	}
 	return (1);
+}
+
+int		check_b(t_sort *s)
+{
+	if (s->b->bot != NULL)
+		s->pivot = s->b->bot;
+	while (1)
+	{
+		if (s->pivot->val < s->b->top->val)
+			rb(s);
+		else if (s->pivot->val > s->b->top->val)
+			pa(s);
+		else if (s->b->top == s->pivot && ft_lstsize(s->b) != 1)
+			break ;
+		else if (ft_lstsize(s->b) == 1)
+		{
+			pa(s);
+			break ;
+		}
+		
+	}
+	return (1);
+}
+
+int divide_b(t_sort *s)
+{
+	if (s->b->bot != NULL)
+		s->pivot = s->b->bot;
+	while (1)
+	{
+		
+		if (s->pivot->val < s->b->top->val)
+			pa(s);
+		else if (s->pivot->val > s->b->top->val)
+			rb(s);
+		if (s->b->top == s->pivot)
+			break ;
+	}
+	return (1);	
+}
+
+int		b_to_a(t_sort *s)
+{
+	int idx;
+	int size;
+	int cnt;
+
+	idx = 0;
+	cnt = 0;
+	size = ft_lstsize(s->b);
+	if (s->b->bot != NULL)
+		s->pivot = s->a->bot;
+	else 
+		return (0);
+	while (idx < size)
+	{
+		if (s->b->top->val > s->pivot->val)
+		{
+			rb(s);
+			cnt++;
+		}
+		else
+		{
+			pa(s);
+		}
+		idx++;
+	}
+	while (cnt)
+	{
+		rrb(s);
+		cnt--;
+	}
+	return (1);
+}
+
+int		a_to_b(t_sort *s)
+{
+	int idx;
+	int size;
+	int cnt;
+
+	idx = 0;
+	cnt = 0;
+	size = ft_lstsize(s->a);
+	if (s->a->bot != NULL)
+		s->pivot = s->a->bot;
+	else 
+		return (0);
+	while (idx < size)
+	{
+		if (s->a->top->val > s->pivot->val)
+		{
+			ra(s);
+			cnt++;
+		}
+		else
+		{
+			pb(s);
+		}
+		idx++;
+	}
+	while (cnt)
+	{
+		rra(s);
+		cnt--;
+	}
+	return (1);
+}
+
+int		node_idx_from_bot(t_stack *t, t_node *node)
+{
+	t_node *tmp;
+	int idx;
+
+	idx = 0;
+	tmp = t->bot;
+	while (tmp != NULL)
+	{
+		if (tmp == node)
+			break ;
+		tmp = tmp->next;
+		idx++;
+	}
+	return (idx);
+}
+
+int		node_idx_from_top(t_stack *t, t_node *node)
+{
+	t_node *tmp;
+	int idx;
+
+	idx = 0;
+	tmp = t->top;
+	while (tmp != NULL)
+	{
+		if (tmp == node)
+			break ;
+		tmp = tmp->prev;
+		idx++;
+	}
+	return (idx);
 }
 
 int		divide_1(t_sort *s)
@@ -119,7 +277,7 @@ int		divide_1(t_sort *s)
 		if (pivot >= s->a->top->val)
 			pb(s);
 		else if (pivot < s->a->top->val)
-			rra(s);
+			ra(s);
 		i++;
 	}
 	return (1);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:30:29 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/04/26 20:17:43 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:17:48 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/push_swap.h"
 
 void	init_node(t_node *node)
 {

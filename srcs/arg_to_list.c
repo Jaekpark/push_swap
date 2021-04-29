@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   arg_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:27:44 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/04/26 22:29:26 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/04/27 17:26:14 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/push_swap.h"
+#include <stdio.h>
 
 void	 print_node(t_stack *t)
 {
 	t_node *tmp;
 
-	tmp = t->top;
+	tmp = t->bot;
 	if (!t || !tmp)
 		return ;
 	while (1)
 	{
-		if (tmp->prev != NULL)
-			printf("%d\n", tmp->val);
-		if (tmp->prev != NULL)
-			tmp = tmp->prev;
-		if (tmp->prev == NULL)
+		if (tmp->next != NULL)
+			printf("%d ", tmp->val);
+		if (tmp->next != NULL)
+			tmp = tmp->next;
+		if (tmp->next == NULL)
 		{
 			printf("%d\n", tmp->val);
 			break ;	
@@ -53,7 +54,12 @@ int		main(int argc, char **argv)
 	t_sort	*s;
 	t_stack *a;
 	t_stack *b;
+	t_node *min;
+	int		idx;
+	char c;
 
+	idx = 0;
+	min = NULL;
 	s = malloc(sizeof(t_sort));
 	a = malloc(sizeof(t_stack));
 	b = malloc(sizeof(t_stack));
@@ -63,14 +69,44 @@ int		main(int argc, char **argv)
 	s->a = a;
 	s->b = b;
 	arg_to_stack(argc, argv, s);
-	printf("----\nstack a\ntop\n-\n");
-	print_node(s->a);
-	printf("-\nbot\n----\n");
-	printf("----\nafter sort stack a\ntop\n-\n");
-	divide_1(s);
-	print_node(s->a);
-	printf("-\nbot\n----\n");
-	print_node(s->b);
-	printf("calc cnt = %d\n", s->inst_cnt);
+	// printf("---------\nstack a ");
+	// print_node(s->a);
+	// printf("---------\nstack b ");
+	// print_node(s->b);
+	// printf("--------\n");
+	// printf("---------\nstack a ");
+	// print_node(s->a);
+	// printf("---------\nstack b ");
+	// print_node(s->b);
+	// printf("--------\n");
+	c = 'f';
+	printf("start\n");
+	while (1)
+	{
+		scanf("%c", &c);
+		printf("command = %c\n", c);
+		if (c == 'a')
+		{
+			a_to_b(s);
+			printf("---a_to_b---\n");
+			printf("stack a ");
+			print_node(s->a);
+			printf("stack b ");
+			print_node(s->b);
+		}
+		else if (c == 'b')
+		{
+			b_to_a(s);
+			printf("---b_to_a---\n");
+			printf("stack a ");
+			print_node(s->a);
+			printf("stack b ");
+			print_node(s->b);
+		}
+		else if (c == 'e')
+			exit(0);
+		printf("calc count = %d\n", s->inst_cnt);
+	}
+	
 	return (0);
 }

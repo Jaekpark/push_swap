@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:50:03 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/04/26 21:03:03 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/04/27 16:16:01 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/push_swap.h"
 
 t_node *make_new_node(int val)
 {
@@ -30,7 +30,7 @@ int		del(t_stack *target)
 
 	if (target->bot == target->top)
 	{
-		clear_node(target->bot);
+		clear_node(target->top);
 		target->bot = NULL;
 		target->top = NULL;
 		target->cur = NULL;
@@ -85,7 +85,7 @@ int		swap(t_stack *target)
 	return (1);
 }
 
-int		rotate(t_stack *target)
+int		r_rotate(t_stack *target)
 {
 	t_node *top_tmp;
 	t_node *bot_tmp;
@@ -107,7 +107,7 @@ int		rotate(t_stack *target)
 	return (1);
 }
 
-int		r_rotate(t_stack *target)
+int		rotate(t_stack *target)
 {
 	t_node *top_tmp;
 	t_node *bot_tmp;

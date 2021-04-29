@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:28:33 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/04/26 14:55:47 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/04/27 12:17:32 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/push_swap.h"
 
 int				ft_atoi(const char *str)
 {
