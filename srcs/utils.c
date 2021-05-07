@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 20:02:29 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 20:45:26 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/07 19:58:15 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	reset_index(t_stack *t)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	if (!t || !t->top || !t->bot)
 		return ;
@@ -24,14 +24,6 @@ void	reset_index(t_stack *t)
 		tmp->idx = -1;
 		tmp = tmp->next;
 	}
-}
-
-void	do_update(t_sort *s)
-{
-	if (!s)
-		return ;
-	markup_sorted(s->a);
-	markup_sorted(s->b);
 }
 
 int		markup_sorted(t_stack *t)
@@ -47,46 +39,58 @@ int		markup_sorted(t_stack *t)
 	while (tmp->prev != NULL)
 	{
 		if (tmp->val < tmp->prev->val)
-		{
 			tmp->prev->is_sorted = 1;
-		}
 		else if (tmp->val > tmp->prev->val)
 		{
 			tmp->prev->is_sorted = 0;
+			break ;
 		}
 		tmp = tmp->prev;
+	}
+	if (tmp != t->bot)
+		return (-1);
+	return (1);
+}
+
+int		check_arg_isnum(char **argv)
+{
+	int	i;
+	int j;
+	
+	i = 0;
+	if (!argv)
+		return (-1);
+	while (argv[++i] != NULL)
+	{
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if ((ft_isnum(argv[i][j]) == -1))
+				return (-1);
+			j++;
+		}
 	}
 	return (1);
 }
 
-int		is_sorted(t_stack *t)
+int		check_arg_isdup(char **argv)
 {
-	int		i;
-	int 	size;
-	t_node	*min;
-	t_node	*max;
-	t_node	*tmp;
-	int		cnt;
+	int i;
+	int j;
 
-	min = find_min_idx_addr(t);
-	max = find_max_idx_addr(t);
-	i = min->idx;
-	size = max->idx;
-	cnt = ft_lstsize(t);
-	tmp = t->top;
-	while (i <= size)
+	i = 0;
+	if (!argv)
+		return (-1);
+	while (argv[++i] != NULL)
 	{
-		if (tmp->idx == i)
-			i++;
-		else
-			return (-1);
-		cnt--;
-		if (tmp->prev != NULL)
-			tmp = tmp->prev;
-		else
-			break ;
+		j = i + 1;
+		while (argv[j] != NULL)
+		{
+			if (ft_strlen(argv[i]) == ft_strlen(argv[j]))
+				if (ft_strcmp(argv[i], argv[j]) == 0)
+					return (-1);
+			j++;
+		}
 	}
-	if (cnt == 0)
-		return (1);
-	return (-1);
+	return (1);
 }

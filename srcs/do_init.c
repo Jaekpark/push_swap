@@ -6,15 +6,15 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:30:29 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 18:51:07 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/07 20:03:16 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_node *make_new_node(int val)
+t_node	*make_new_node(int val)
 {
-    t_node *new;
+    t_node	*new;
 
     if (!(new = malloc(sizeof(t_node))))
         return (NULL);
@@ -39,13 +39,24 @@ void	init_stack(t_stack *t)
     t->top = NULL;
 }
 
-void	init_sort(t_sort *s)
+int		init_sort(t_sort *s, char *name)
 {
-    s->a = NULL;
-    s->b = NULL;
-    s->size = 0;
-	s->is_checker = 0;
+	if (!s)
+		return (-1);
+    else if (!(s->a = malloc(sizeof(t_stack))))
+		return (-1);
+    else if (!(s->b = malloc(sizeof(t_stack))))
+		return (-1);
+	else if (ft_strcmp(name, "push_swap") == 0)
+		s->is_checker = 0;
+	else if (ft_strcmp(name, "checker") == 0)
+		s->is_checker = 1;
+	init_stack(s->a);
+	init_stack(s->b);
+	s->p1 = 0;
+	s->p2 = 0;
     s->inst_cnt = 0;
+	return (1);
 }
 
 int		init_node_index(t_stack *t, int idx)
@@ -58,7 +69,7 @@ int		init_node_index(t_stack *t, int idx)
 	if (!t || idx < 0 || idx >= ft_lstsize(t))
 		return (-1);
 	tmp = t->bot;
-	min = find_max_value_addr(t);
+	min = find_max_value_addr(t, ft_lstsize(t));
 	new_idx = idx + 1;
 	not_indexing = 0;
 	while (tmp != NULL)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   inst_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:44:28 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/01 19:45:51 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/05 04:28:37 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ int		ra(t_sort *s, int cnt)
 	{
 		rotate(s->a);
 		if (s->is_checker == 0)
-		{
-			s->inst_cnt++;
 			write(STDOUT, "ra\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
 	return (1);
@@ -37,10 +35,8 @@ int		rb(t_sort *s, int cnt)
 	{
 		rotate(s->b);
 		if (s->is_checker == 0)
-		{
-			s->inst_cnt++;
 			write(STDOUT, "rb\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
     return (1);
@@ -55,10 +51,8 @@ int		rr(t_sort *s, int cnt)
 		rotate(s->a);
 		rotate(s->b);
 		if (s->is_checker == 0)
-		{
-			s->inst_cnt++;
 			write(STDOUT, "rr\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
 	return (1);

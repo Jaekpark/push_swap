@@ -6,13 +6,13 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 20:01:00 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 20:06:13 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/05 01:27:59 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		locate_from_bot(t_stack *t, int range)
+int		locate_from_bot(t_stack *t, int pivot)
 {
 	t_node	*tmp;
 	int		find;
@@ -23,7 +23,7 @@ int		locate_from_bot(t_stack *t, int range)
 	tmp = t->bot;
 	while (tmp != NULL)
 	{
-		if (tmp->idx <= range)
+		if (tmp->idx <= pivot)
 		{
 			find = 1;
 			break ;
@@ -36,7 +36,7 @@ int		locate_from_bot(t_stack *t, int range)
 	return (-1);
 }
 
-int		locate_from_top(t_stack *t, int range)
+int		locate_from_top(t_stack *t, int pivot)
 {
 	t_node	*tmp;
 	int		i;
@@ -47,7 +47,7 @@ int		locate_from_top(t_stack *t, int range)
 	tmp = t->top;
 	while (tmp != NULL)
 	{
-		if (tmp->idx <= range)
+		if (tmp->idx <= pivot)
 		{
 			find = 1;
 			break ;

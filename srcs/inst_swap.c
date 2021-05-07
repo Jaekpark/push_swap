@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   inst_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:31:04 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/01 19:38:04 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/04 17:03:39 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ int		sa(t_sort *s, int cnt)
 	{
 		swap(s->a);
 		if (s->is_checker == 0)
-		{	
-			s->inst_cnt++;
 			write(STDOUT, "sa\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
     return (1);
@@ -38,10 +36,8 @@ int		sb(t_sort *s, int cnt)
 		swap(s->b);
 
 		if (s->is_checker == 0)
-		{
-			s->inst_cnt++;
 			write(STDOUT, "sa\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
 	return (1);
@@ -56,10 +52,8 @@ int		ss(t_sort *s, int cnt)
 		swap(s->a);
 		swap(s->b);
 		if (s->is_checker == 0)
-		{
-			s->inst_cnt++;
 			write(STDOUT, "ss\n", 3);
-		}
+		s->inst_cnt++;
 		cnt--;
 	}
     return (1);

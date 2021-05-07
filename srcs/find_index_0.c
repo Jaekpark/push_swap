@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 20:25:37 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 20:06:03 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/06 21:12:06 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		idx_locate_from_bot(t_stack *t, int idx)
 	if (find == 1)
 		return (i);
 	return (-1);
-
 }
 
 int		idx_locate_from_top(t_stack *t, int idx)
@@ -69,23 +68,23 @@ int		val_locate_from_bot(t_stack *t, int val)
 {
 	t_node	*tmp;
 	int		find;
-	int		idx;
+	int		i;
 
-	idx = 1;
+	i = 1;
 	find = 0;
 	tmp = t->bot;
 	while (tmp != NULL)
 	{
-		if (tmp->val == val)
+		if (tmp->idx >= val)
 		{
 			find = 1;
 			break ;
 		}
 		tmp = tmp->next;
-		idx++;
+		i++;
 	}
 	if (find == 1)
-		return (idx);
+		return (i);
 	return (-1);
 }
 
@@ -100,7 +99,7 @@ int		val_locate_from_top(t_stack *t, int val)
 	tmp = t->top;
 	while (tmp != NULL)
 	{
-		if (tmp->val == val)
+		if (tmp->idx >= val)
 		{
 			find = 1;
 			break ;

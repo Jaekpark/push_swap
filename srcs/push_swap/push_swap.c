@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 17:59:57 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 20:51:49 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/07 21:42:22 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,31 @@
 
 int main(int argc, char **argv)
 {
-    
-        t_sort	*s;
-        t_stack *a;
-        t_stack *b;
+	t_sort	*s;
 
-		int cnt = 1;
-
-        s = malloc(sizeof(t_sort));
-        a = malloc(sizeof(t_stack));
-        b = malloc(sizeof(t_stack));
-        init_sort(s);
-        init_stack(a);
-        init_stack(b);
-        s->a = a;
-        s->b = b;
-        arg_to_stack(argc, argv, s);
-		init_node_index(s->a, 0);
-		printf("@@@@@@@ before sort @@@@@@@\n");
-		print_two_stack(s);
-		if (ft_lstsize(s->a) == 2)
-			two_sort(s, s->a);
-		else if (ft_lstsize(s->a) == 3)
-			three_sort(s, s->a);
-		else if (ft_lstsize(s->a) == 5)
-			five_sort(s, s->a);
-		else
-		{
-			divide_t(s, ft_lstsize(s->a), cnt);
-		}
-		printf("&&&&&&&& after sort &&&&&&&&\n");
-		print_two_stack(s);
-		// printf("stack a ");
-		// print_node(s->a);
-		// printf("\n");
-		// printf("stack b ");
-		// print_node(s->b);
-		// printf("\n");
-		printf("inst cnt = %d\n", s->inst_cnt);
-
-        return (0);
+	if (argc <= 1 || !argv)
+		return (print_status(ERR));
+	else if (!(s = malloc(sizeof(t_sort))))
+		return (print_status(ERR));
+	else if (!(init_sort(s, argv[1])))
+		return (print_status(ERR));
+	else if (!(check_arg_isnum(argv)))
+		return (print_status(ERR));
+	else if (!(check_arg_isdup(argv)))
+		return (print_status(ERR));
+	else if (!(arg_to_stack(argc, argv, s)))
+		return (print_status(ERR));
+	else if (!(init_node_index(s->a, 0)))
+		return (print_status(ERR));
+	else if (!(check_size_and_sort_a(s, ft_lstsize(s->a))))
+		return (print_status(ERR));
+	else if (!(divide_t(s, ft_lstsize(s->a))))
+		return (print_status(ERR));
+	else if (!(conquer_t(s)))
+		return (print_status(ERR));
+	printf("\x1b[32m""Hello I'm green""\x1b[0m""\n");
+	print_two_stack(s);
+	printf("inst cnt = %lld\n", s->inst_cnt);
+	return (0);
 }
+
