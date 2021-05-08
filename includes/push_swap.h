@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:17:37 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 21:04:41 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 18:46:43 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,27 @@
 # include <stdio.h>
 # include "../libs/includes/ft_printf.h"
 
+# define VFLAG "-v"
+# define CFLAG "-c"
+# define VCFLAG "-vc"
+# define CVFLAG "-cv"
+# define IFLAG "-I"
+# define PA 1
+# define PB 2
+# define SA 3
+# define SB 4
+# define SS 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
 # define ANSI_COLOR_RED     "\x1b[31m"
 # define ANSI_COLOR_GREEN   "\x1b[32m"
 # define ANSI_COLOR_YELLOW  "\x1b[33m"
 # define ANSI_COLOR_BLUE    "\x1b[34m"
-# define ANSI_COLOR_MAGENTA "\x1b[35m"
+# define ANSI_COLOR_MAGENTA "\x1b[36m"
 # define ANSI_COLOR_CYAN    "\x1b[36m"
 # define ANSI_COLOR_RESET   "\x1b[0m"
 # define STDERR 2
@@ -31,6 +47,7 @@
 # define ERR -1
 # define OK	1
 # define KO 0
+# define END 2
 # define MSG_ERR "Error\n"
 # define MSG_OK	"OK\n"
 # define MSG_KO "KO\n"
@@ -39,22 +56,33 @@ typedef struct	s_sort
 {
     t_stack		*a;
     t_stack		*b;
+	char		*path;
+	char		*argv;
+	char		**num;
 	int			p1;
 	int			p2;
 	int			is_checker;
+	int			v_flag;
+	int			c_flag;
+	int			i_flag;
     long long	inst_cnt;
 }				t_sort;
 
 //print_error.c
-int		print_status(int status);
+int		print_status(int status, t_sort *s);
 int		set_pivot(t_sort *s, t_stack *t, int size);
 int		check_size_and_sort_a(t_sort *s, int size);
 
-int		check_arg_isnum(char **argv);
-int		check_arg_isdup(char **argv);
+int		check_arg_type(t_sort *s, char **argv);
+int		check_arg_isdup(char **argv, int idx);
+int		is_all_num(char **str);
 
-void	set_sort_for_pw(t_sort *s, t_stack *a, t_stack *b);
-void	set_sort_for_ck(t_sort *s, t_stack *a, t_stack *b);
+
+void	clear_sort(t_sort *s);
+int		make_stack(t_sort *s, int argc, char **argv);
+int		arr_to_stack(t_sort *s);
+int		read_file(t_sort *s);
+int		split_argv(t_sort *s);
 
 //three_sort.c
 int		do_three_sort_a(t_sort *s, t_stack *a);
@@ -80,7 +108,7 @@ int		arg_to_stack(int argc, char **argv, t_sort *s);
 //uitls.c
 int		markup_sorted(t_stack *t);
 void	do_update(t_sort *s);
-int		is_sorted(t_stack *t);
+int		is_sorted(t_sort *s);
 
 //find_index.c
 int		idx_locate_from_bot(t_stack *t, int idx);

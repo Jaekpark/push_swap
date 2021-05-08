@@ -6,15 +6,31 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 18:06:46 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 18:07:52 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 16:15:11 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isnum(int c)
+int		ft_isnum(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (-1);
+}
+
+int		ft_strnum(char *str)
+{
+	if (!str)
+		return (-1);
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+	{
+		if (*str >= '0' && *str <= '9')
+			str++;
+		else
+			return (-1);
+	}
+	return (1);
 }

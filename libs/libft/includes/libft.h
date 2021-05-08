@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:58:26 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 20:19:49 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 18:34:27 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 128
@@ -69,11 +70,12 @@ int					ft_isascii(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_isalnum(int c);
-int					ft_isnum(int c);
+int					ft_isnum(char c);
+int					ft_strnum(char *str);
 char				*ft_strdup(const char *s1);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
@@ -96,5 +98,11 @@ void (*del)(void *));
 char				*ft_uitoa(unsigned int n);
 char				*ft_utoa(unsigned long long n, char *base_set);
 int					ft_strcmp(char *s1, char *s2);
+int					ft_strnrcmp(char *s1, char *s2, int cnt);
+long long			ft_atol(char *str);
+int					ft_free_double(void	**ptr);
+int					ft_free_single(void *ptr);
+size_t				ft_double_strlen(const char **str);
+
 
 #endif

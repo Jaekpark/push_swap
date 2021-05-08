@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 20:01:01 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/02 14:39:52 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 14:07:40 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int			is_newline(char *backup)
 	int				i;
 
 	i = 0;
+	if (!backup)
+		return (-1);
 	while (backup[i])
 	{
 		if (backup[i] == '\n')

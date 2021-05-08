@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 19:03:09 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 18:13:37 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:58:17 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,32 +171,6 @@ int		do_push_fast_b(t_sort *s, t_stack *t, t_node *n)
 		rb(s, top);
 		pa(s, 1);
 		rrb(s, top);
-	}
-	return (1);
-}
-
-int		do_push_fast_a(t_sort *s, t_stack *t, t_node *n)
-{
-	int bot;
-	int top;
-
-	if (!s || !t || !n)
-		return (-1);
-	bot = idx_locate_from_bot(t, n->idx);
-	top = idx_locate_from_top(t, n->idx);
-	if (top == -1 && bot == -1)
-		return (-1);
-	else if (top == 0)
-		pb(s, 1);
-	else if (top >= bot)
-	{
-		rra(s, bot);
-		pb(s, 1);
-	}
-	else if (top < bot)
-	{
-		ra(s, top);
-		pb(s, 1);
 	}
 	return (1);
 }

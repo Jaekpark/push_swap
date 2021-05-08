@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:44:28 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/05 04:28:37 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:16:46 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@ int		ra(t_sort *s, int cnt)
 	while (cnt)
 	{
 		rotate(s->a);
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "ra\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}
@@ -34,8 +40,14 @@ int		rb(t_sort *s, int cnt)
 	while (cnt)
 	{
 		rotate(s->b);
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "rb\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}
@@ -50,8 +62,14 @@ int		rr(t_sort *s, int cnt)
 	{
 		rotate(s->a);
 		rotate(s->b);
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "rr\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}

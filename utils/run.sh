@@ -6,11 +6,11 @@
 #    By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 13:21:27 by parkjaekw         #+#    #+#              #
-#    Updated: 2021/05/07 17:52:07 by parkjaekw        ###   ########.fr        #
+#    Updated: 2021/05/08 18:14:11 by jaekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #! bin/bash
 
-ARG=`ruby -e "puts ($1..$2).to_a.shuffle.join(' ')"`; ./push_swap_debug $ARG
+ARG=`ruby -e "puts ($1..$2).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG
 

@@ -1,5 +1,5 @@
 NAME			=	libft.a
-
+NAME_DEBUG		=	libft_debug.a
 INCS			=	libft.h
 SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c ft_memccpy.c \
 					ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strnstr.c \
@@ -9,13 +9,16 @@ SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c
 					ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 					ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 					ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_gnl.c ft_utoa.c ft_uitoa.c \
-					ft_isnum.c ft_strcmp.c
+					ft_isnum.c ft_strcmp.c ft_strnrcmp.c ft_atol.c ft_memfree.c
+
 OBJS			=	$(patsubst %.c, %.o, $(SRCS))
 
 SRCS_DIR		=	srcs/
 OBJS_DIR		=	objs/
 INCS_DIR		=	includes/
+DEBUG_OBJS_DIR	=	objs_debug/
 
+DEBUG_OBJS_FILE	=	$(addprefix $(DEBUG_OBJS_DIR), $(OBJS))
 SRCS_FILE		=	$(addprefix $(SRCS_DIR), $(SRCS))
 OBJS_FILE		=	$(addprefix $(OBJS_DIR), $(OBJS))
 INCS_FILE		= 	$(addprefix $(INCS_DIR), $(INCS))
@@ -24,11 +27,14 @@ CC				=	gcc
 AR				=	ar rcs
 RM				=	rm -rf
 CFLAGS			=	-Wall -Wextra -Werror
+DEBUG_FLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 HEADER_FLAG		=	-I$(INCS_DIR)
 
 BLACK			=	"\033[1;30m"
 RED				=	"\033[1;31m"
 GREEN			=	"\033[1;32m"
+YELLOW			=	"\033[1;33m"
+BLUE			=	"\033[1;34m"
 CYAN			=	"\033[1;35m"
 PURPLE			=	"\033[1;36m"
 WHITE			=	"\033[1;37m"
@@ -36,32 +42,46 @@ EOC				=	"\033[0;0m"
 
 all:			$(NAME)
 
+debug:			$(NAME_DEBUG)
+
 $(NAME):		$(OBJS_DIR) $(OBJS_FILE)
+				@echo $(CYAN) " - Compiling $@ "$(EOC)
 				@$(AR) libft.a $(OBJS_FILE)
-				@echo $(PURPLE) " - Compiling $@" $(GREEN)"\n  - OK" $(EOC)
+				@echo $(GREEN) " - OK"$(EOC)
 
 $(OBJS_DIR) :
-					@echo $(CYAN) " - make objs directory" $(EOC)
-					@mkdir -p $(OBJS_DIR)
-					@echo $(GREEN) " - OK" $(EOC)					
+					@mkdir -p $(OBJS_DIR)	
 
 $(OBJS_DIR)%.o :	$(SRCS_DIR)%.c 
 					@$(CC) -c $(CFLAGS) $(HEADER_FLAG) $< -o $@
 
+$(NAME_DEBUG):	$(DEBUG_OBJS_DIR) $(DEBUG_OBJS_FILE)
+				@echo $(CYAN) " - Compiling $@" $(EOC)
+				@$(AR) $(NAME_DEBUG) $(DEBUG_OBJS_FILE)
+				@echo $(GREEN) " - OK"$(EOC)
+
+$(DEBUG_OBJS_DIR) :
+				@mkdir -p $(DEBUG_OBJS_DIR)
+
+$(DEBUG_OBJS_DIR)%.o :	$(SRCS_DIR)%.c
+				@$(CC) -c $(DEBUG_FLAGS) $(HEADER_FLAG) $< -o $@
+
 norm:			
-				@echo $(PURPLE) " - libft norm check" $(EOC)
+				@echo $(CYAN) " - Libft norm check" $(EOC)
 				norminette $(SRCS) $(INCS)/*.h
 
 clean:
-				@echo $(PURPLE) " - clean $(NAME)" $(EOC)
-				@$(RM) $(OBJS_FILE)
+				@echo $(CYAN) " - clean libft" $(EOC)
+				@$(RM) $(OBJS_FILE) $(DEBUG_OBJS_FILE)
 				@echo $(GREEN) " - OK" $(EOC)
 
 fclean:			
-				@echo $(PURPLE) " - fclean $(NAME)" $(EOC)
-				@$(RM) $(NAME) $(OBJS_FILE)
-				@echo $(GREEN) " - OK" $(EOC)
+				@echo $(CYAN) " - fclean libft" $(EOC)
+				@$(RM) $(NAME_DEBUG) $(NAME) $(OBJS_DIR) $(DEBUG_OBJS_DIR)
+				@echo $(GREEN) " - OK"$(EOC)
 
 re:				fclean $(NAME)
 
-.PHONY:			all clean fclean re norm
+redebug:		fclean $(NAME_DEBUG)
+
+.PHONY:			all clean fclean re norm redebug debug

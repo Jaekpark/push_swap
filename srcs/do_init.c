@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:30:29 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 20:03:16 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 17:39:54 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,27 @@ void	init_stack(t_stack *t)
 
 int		init_sort(t_sort *s, char *name)
 {
+	int ret;
+
+	ret = 0;
 	if (!s)
 		return (-1);
     else if (!(s->a = malloc(sizeof(t_stack))))
 		return (-1);
     else if (!(s->b = malloc(sizeof(t_stack))))
 		return (-1);
-	else if (ft_strcmp(name, "push_swap") == 0)
+	if ((ret = ft_strnrcmp(name, "push_swap", 9)) == 0)
 		s->is_checker = 0;
-	else if (ft_strcmp(name, "checker") == 0)
+	if ((ret = ft_strnrcmp(name, "checker", 7)) == 0)
 		s->is_checker = 1;
 	init_stack(s->a);
 	init_stack(s->b);
+	s->path = NULL;
+	s->num = NULL;
+	s->argv = NULL;
+	s->c_flag = 0;
+	s->i_flag = 0;
+	s->v_flag = 0;
 	s->p1 = 0;
 	s->p2 = 0;
     s->inst_cnt = 0;

@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 15:51:38 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/04 17:02:49 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:20:34 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		rra(t_sort *s, int cnt)
 		r_rotate(s->a);
 		if (s->is_checker == 0)
 			write(STDOUT, "rra\n", 4);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}
@@ -36,6 +38,8 @@ int		rrb(t_sort *s, int cnt)
 		r_rotate(s->b);
 		if (s->is_checker == 0)
 			write(STDOUT, "rrb\n", 4);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		cnt--;
 		s->inst_cnt++;
 	}
@@ -52,6 +56,8 @@ int		rrr(t_sort *s, int cnt)
 		r_rotate(s->b);
 		if (s->is_checker == 0)
 			write(STDOUT, "rrr\n", 4);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}

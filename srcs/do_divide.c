@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 17:05:42 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/07 18:16:15 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:44:23 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int		check_size_and_sort_a(t_sort *s, int size)
 {
 	if (!s || !s->a->top)
 		return (-1);
-	if (size == 1 || ft_lstsize(s->a) == 1)
+	if (size == 1)
 		return (1);
-	if (size == 2 || ft_lstsize(s->a) == 2)
+	if (size == 2)
 		two_sort_a(s, s->a);
 	else if (size == 3)
 		three_sort_a(s, s->a);
@@ -59,7 +59,7 @@ int		do_divide(t_sort *s, int size)
 		else
 		{
 			pb(s, 1);
-			if (s->b->top->idx < s->p2)
+			if (ft_lstsize(s->b) > 1 && s->b->top->idx < s->p2)
 			{
 				if (s->a->top->idx >= s->p1)
 				{
@@ -78,6 +78,8 @@ int		divide_t(t_sort *s, int size)
 {
 	if (!s || !s->a || !s->a->top)
 		return (-1);
+	if (markup_sorted(s->a) == 1)
+		return (1);
 	if (size <= 3 || ft_lstsize(s->a) <= 3)
 		return (check_size_and_sort_a(s, size));
 	if (!(set_pivot(s, s->a, size)))
@@ -104,11 +106,13 @@ int		do_conquer(t_sort *s)
 	min_cnt = calc_cnt_min(s, min);
 	if (max_cnt == 0 && min_cnt == 0)
 		return (0);
-	if (max_cnt < min_cnt)
+	if (max_cnt < 5 + min_cnt)
 		conquer_by_max(s, max);
-	else if (max_cnt > min_cnt)
+	else if (max_cnt > 5 + min_cnt)
 		rrac += conquer_by_min(s, min);
 	else if (max_cnt == min_cnt)
+		conquer_by_max(s, max);
+	else
 		conquer_by_max(s, max);
 	return (rrac);
 }

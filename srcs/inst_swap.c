@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:31:04 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/04 17:03:39 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:16:16 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@ int		sa(t_sort *s, int cnt)
 	while (cnt)
 	{
 		swap(s->a);
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{	
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "sa\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}
@@ -34,9 +40,14 @@ int		sb(t_sort *s, int cnt)
 	while (cnt)
 	{
 		swap(s->b);
-
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{	
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "sa\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}
@@ -51,8 +62,14 @@ int		ss(t_sort *s, int cnt)
 	{
 		swap(s->a);
 		swap(s->b);
+		if (s->is_checker == 0 && s->v_flag == 1)
+		{	
+			ft_printf("Exec : ");
+		}
 		if (s->is_checker == 0)
 			write(STDOUT, "ss\n", 3);
+		if (s->v_flag == 1)
+			print_two_stack(s);
 		s->inst_cnt++;
 		cnt--;
 	}

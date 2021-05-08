@@ -6,13 +6,13 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 20:17:05 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/06 21:03:39 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/08 18:18:02 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		print_status(int status)
+int		print_status(int status, t_sort *s)
 {
 	if (status < -1 || status > 1)
 		return (-1);
@@ -22,5 +22,13 @@ int		print_status(int status)
 		write(STDOUT, MSG_KO, ft_strlen(MSG_KO));
 	else if (status == OK)
 		write(STDOUT, MSG_OK, ft_strlen(MSG_OK));
+	else if (status == END)
+	{
+		if (s != NULL)
+			clear_sort(s);
+		return (0);
+	}
+	if (s != NULL)
+		clear_sort(s);
 	return (status);
 }
