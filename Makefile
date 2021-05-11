@@ -129,7 +129,10 @@ norm:
 
 num:
 	@echo $(CYAN) "generate $(NUM2) numbers" $(EOC)
-	@ruby -e "puts ($(NUM1)..$(NUM2).to_a.shuffle.join(' ')" > $(NUM2)
+	@ruby -e "puts ($(NUM1)..$(NUM2)).to_a.shuffle.join(' ')" > $(NUM2)
+
+test:
+	@./utils/analyzer.sh
 
 leaks:
 	@osascript -e 'tell app "Terminal" to do script "while true; do leaks push_swap; sleep 2; clear; done"'
