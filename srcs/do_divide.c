@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_divide.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaekpark <jaekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 17:05:42 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/10 02:35:23 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/11 16:31:27 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int			check_size_and_sort(t_sort *s, int size)
 	if (!s || !s->a->top)
 		return (-1);
 	if (size == 1)
+		return (1);
+	if (is_sorted(s) == 1)
 		return (1);
 	if (size == 2)
 		two_sort(s, s->a);
