@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 	s = NULL;
 	if (argc <= 1 || !argv)
 		return (print_status(END, s));
-	else if (argc > 10000)
+	else if (argc > 20000)
 		return (print_status(ERR, s));
 	else if (!(s = malloc(sizeof(t_sort))))
 		return (print_status(ERR, s));

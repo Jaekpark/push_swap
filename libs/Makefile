@@ -72,7 +72,7 @@ $(OBJS_DIR)%.o :	$(SRCS_DIR)%.c
 
 norm:			
 				@echo $(BLUE) " - ft_printf norm check" $(EOC)
-				norminette $(SRCS) $(INCS)/*.h
+				@norminette $(SRCS_FILE) $(INCS_FILE)
 
 clean:
 				@make clean -C $(LIBFT_DIR)

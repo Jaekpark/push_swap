@@ -68,7 +68,7 @@ $(DEBUG_OBJS_DIR)%.o :	$(SRCS_DIR)%.c
 
 norm:			
 				@echo $(CYAN) " - Libft norm check" $(EOC)
-				norminette $(SRCS) $(INCS)/*.h
+				@norminette $(SRCS_FILE) $(INCS_FILE)
 
 clean:
 				@echo $(CYAN) " - clean libft" $(EOC)

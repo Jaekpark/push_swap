@@ -62,6 +62,8 @@ CYAN			=	"\033[1;35m"
 PURPLE			=	"\033[1;36m"
 WHITE			=	"\033[1;37m"
 EOC				=	"\033[0;0m"
+NUM1			= 	1
+NUM2			=	2
 
 all:			$(NAME_PW) $(NAME_CK)
 
@@ -120,7 +122,20 @@ $(DEBUG_OBJS_DIR)%.o : $(SRCS_DIR)%.c $(INCS_FILE)
 						@$(CC) -c $(DEBUG_FLAG) $(HEADER_FLAG) $< -o $@
 
 norm:			
-				norm $(SRCS_FILE)
+				@echo $(CYAN) " - push swap norm check"$(EOC)
+				@norminette $(SRCS_FILE) $(INCS_FILE)
+				@make norm -C $(LIB_DIR)
+				@make norm -C $(LIBFT_DIR)
+
+num:
+	@echo $(CYAN) "generate $(NUM2) numbers" $(EOC)
+	@ruby -e "puts ($(NUM1)..$(NUM2).to_a.shuffle.join(' ')" > $(NUM2)
+
+leaks:
+	@osascript -e 'tell app "Terminal" to do script "while true; do leaks push_swap; sleep 2; clear; done"'
+	@osascript -e 'tell app "Terminal" to do script "while true; do leaks checker; sleep 2; clear; done"'
+	@./utils/leaks.sh
+
 clean:
 				@make clean -C $(LIB_DIR)
 				@echo $(YELLOW) " - clean push_swap" $(EOC)
@@ -145,4 +160,4 @@ tester:
 
 re:				fclean $(NAME_PW) $(NAME_CK)
 
-.PHONY:			all clean fclean re norm debug tester
+.PHONY:			all clean fclean re norm debug tester num leaks

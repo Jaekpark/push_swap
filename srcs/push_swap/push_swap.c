@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	s = NULL;
 	if (argc <= 1 || !argv)
 		return (print_status(END, s));
-	else if (!(s = malloc(sizeof(t_sort))) || argc > 100000)
+	else if (!(s = malloc(sizeof(t_sort))) || argc > 20000)
 		return (print_status(ERR, s));
 	else if ((init_sort(s, argv[0])) == -1)
 		return (print_status(ERR, s));
