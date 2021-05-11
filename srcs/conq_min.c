@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conq_by_min.c                                      :+:      :+:    :+:   */
+/*   conq_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:40:50 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/06 21:30:19 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:53:37 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	push_for_conquer(t_sort *s, int cnt, int rb_flag)
 	}
 	pa(s, 1);
 	ra(s, 1);
+	if (s->a->top->idx == s->a->top->prev->idx + 1)
+		sa(s, 1);
 	return (1);
 }
 
@@ -33,7 +35,7 @@ int			calc_cnt_min(t_sort *s, t_node *min)
 	int bot;
 	int top;
 	int cnt;
-	
+
 	cnt = 0;
 	if (s->b->top == NULL)
 		return (0);

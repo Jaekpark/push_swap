@@ -6,18 +6,18 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:27:36 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/08 18:02:01 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:38:34 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	clear_node(t_node *node)
+void	clear_node(t_node *n)
 {
-    node->prev = NULL;
-    node->next = NULL;
-    free(node);
-    node = NULL;
+	n->prev = NULL;
+	n->next = NULL;
+	free(n);
+	n = NULL;
 }
 
 void	clear_stack(t_stack *t)

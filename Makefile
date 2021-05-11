@@ -1,11 +1,11 @@
 PUSH_SWAP_PATH	=	~/42cursus/inner_circles/my_push_swap/
 TESTER			=	./utils/run.sh
 INCS			=	push_swap.h
-SRCS			=	arg_to_list.c conq_max.c conq_min.c do_clear.c do_divide.c\
-					do_init.c do_push.c do_rotate.c do_small_sort_a.c\
-					do_swap.c find_index_0.c find_index_1.c find_max.c find_min.c\
-					inst_push.c inst_r_rotate.c inst_rotate.c inst_swap.c print_status.c\
-					set_pivot.c utils.c print_stack.c
+SRCS			=	arg_to_stack.c conq_max.c conq_min.c do_clear.c do_init.c do_divide.c do_conquer.c\
+					do_swap.c do_push.c do_rotate.c do_small_sort.c find_index.c find_max.c find_min.c\
+					inst_push.c inst_r_rotate.c inst_rotate.c inst_swap.c print_node_a.c print_node_b.c\
+					print_node.c print_stack_color.c print_stack.c print_stack_frame.c print_status.c\
+					utils_for_sort.c utils_for_flag.c utils_for_checker.c utils_for_arg.c utils_for_print.c
 PW_SRC			=	push_swap.c
 CK_SRC			=	checker.c
 
@@ -41,7 +41,6 @@ LIB				=	$(LIB_DIR)/libftprintf.a
 LIB_INCS		=	$(LIB_DIR)/includes/ft_printf.h
 DEBUG_LIB		=	$(LIB_DIR)/libftprintf_debug.a
 
-
 CC				=	gcc
 RM				=	rm -rf
 CFLAGS			=	-Wall -Wextra -Werror
@@ -51,8 +50,8 @@ LIB_FLAG		=	-lftprintf -L$(LIB_DIR) -lft -L$(LIBFT_DIR)
 DEBUG_LIB_FLAG	=	-lftprintf_debug -L$(LIB_DIR) -lft_debug -L$(LIBFT_DIR)
 NAME_PW			=	push_swap
 NAME_CK			=	checker
-DEBUG_PW		=	push_swap_debug
-DEBUG_CK		=	checker_debug
+DEBUG_PW		=	debug_push_swap
+DEBUG_CK		=	debug_checker
 
 BLACK			=	"\033[1;30m"
 RED				=	"\033[1;31m"
@@ -121,8 +120,7 @@ $(DEBUG_OBJS_DIR)%.o : $(SRCS_DIR)%.c $(INCS_FILE)
 						@$(CC) -c $(DEBUG_FLAG) $(HEADER_FLAG) $< -o $@
 
 norm:			
-				norminette $(SRCS) $(INCS)
-
+				norm $(SRCS_FILE)
 clean:
 				@make clean -C $(LIB_DIR)
 				@echo $(YELLOW) " - clean push_swap" $(EOC)
@@ -147,24 +145,4 @@ tester:
 
 re:				fclean $(NAME_PW) $(NAME_CK)
 
-test:			$(NAME_PW)
-				@echo "test 1..3"
-				@$(TESTER) 1 3
-				@echo "test 1..5"
-				@$(TESTER) 1 5
-				@echo "test 1..100"
-				@$(TESTER) 1 100
-				@echo "test 1..500"
-				@$(TESTER) 1 500
-				@echo "test -50..49"
-				@$(TESTER) -50 49
-				@echo "test -100..100"
-				@$(TESTER) -100 100
-				@echo "test -250..249"
-				@$(TESTER) -250 249
-				@echo "test -100 0"
-				@$(TESTER) -100 0
-				@echo "test -500..0"
-				@$(TESTER) -500 0
-
-.PHONY:			all clean fclean re norm debug test
+.PHONY:			all clean fclean re norm debug tester

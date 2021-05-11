@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 18:06:46 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/10 03:00:29 by jaekpark         ###   ########.fr       */
+/*   Created: 2021/05/09 16:14:11 by jaekpark          #+#    #+#             */
+/*   Updated: 2021/05/10 03:01:57 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isnum(char c)
+int		ft_numlen(char *str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (-1);
-}
+	int	i;
 
-int		ft_strnum(char *str)
-{
-	if (!str)
-		return (-1);
-	while (*str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str)
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if ((ft_isnum(str[i])) == -1)
+		return (0);
+	while (str[i])
 	{
-		if (*str >= '0' && *str <= '9')
-			str++;
+		if ((ft_isnum(str[i])) == 1)
+			i++;
 		else
-			return (-1);
+			break ;
 	}
-	return (1);
+	return (i);
 }

@@ -6,37 +6,38 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 13:30:29 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/08 17:39:54 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:46:03 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_node	*make_new_node(int val)
+void	init_val(t_val *v)
 {
-    t_node	*new;
-
-    if (!(new = malloc(sizeof(t_node))))
-        return (NULL);
-    init_node(new);
-    new->val = val;
-    return (new);
+	if (!v)
+		return ;
+	v->max = NULL;
+	v->min = NULL;
+	v->sec = NULL;
+	v->max_cnt = -1;
+	v->sec_cnt = -1;
+	v->min_cnt = -1;
 }
 
 void	init_node(t_node *node)
 {
-    node->val = 0;
+	node->val = 0;
 	node->idx = -1;
 	node->is_sorted = -1;
-    node->prev = NULL;
-    node->next = NULL;
+	node->prev = NULL;
+	node->next = NULL;
 }
 
 void	init_stack(t_stack *t)
 {
-    t->bot = NULL;
-    t->cur = NULL;
-    t->top = NULL;
+	t->bot = NULL;
+	t->cur = NULL;
+	t->top = NULL;
 }
 
 int		init_sort(t_sort *s, char *name)
@@ -46,9 +47,9 @@ int		init_sort(t_sort *s, char *name)
 	ret = 0;
 	if (!s)
 		return (-1);
-    else if (!(s->a = malloc(sizeof(t_stack))))
+	else if (!(s->a = malloc(sizeof(t_stack))))
 		return (-1);
-    else if (!(s->b = malloc(sizeof(t_stack))))
+	else if (!(s->b = malloc(sizeof(t_stack))))
 		return (-1);
 	if ((ret = ft_strnrcmp(name, "push_swap", 9)) == 0)
 		s->is_checker = 0;
@@ -64,7 +65,7 @@ int		init_sort(t_sort *s, char *name)
 	s->v_flag = 0;
 	s->p1 = 0;
 	s->p2 = 0;
-    s->inst_cnt = 0;
+	s->inst_cnt = 0;
 	return (1);
 }
 

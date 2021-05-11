@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 17:53:01 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/08 17:56:59 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 03:02:27 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_free_single(void *ptr)
 	return (1);
 }
 
-int		ft_free_double(void	**ptr)
+int		ft_free_double(void **ptr)
 {
 	int i;
 

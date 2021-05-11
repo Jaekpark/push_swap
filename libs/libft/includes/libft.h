@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 20:58:26 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/08 18:34:27 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 03:03:55 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,28 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 128
+# endif
+# ifndef OPEN_MAX
+#  define OPEN_MAX 50
+# endif
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 128
-#endif
-
-#ifndef OPEN_MAX
-# define OPEN_MAX 50
-#endif
-
-typedef struct	s_node
+typedef struct		s_node
 {
-    int				val;
+	int				val;
 	int				idx;
 	int				is_sorted;
-    struct s_node	*prev;
-    struct s_node	*next;
-}				t_node;
+	struct s_node	*prev;
+	struct s_node	*next;
+}					t_node;
 
-typedef struct	s_stack
+typedef struct		s_stack
 {
-    t_node *bot;
-    t_node *cur;
-    t_node *top;
-}				t_stack;
+	t_node			*bot;
+	t_node			*cur;
+	t_node			*top;
+}					t_stack;
 
 typedef struct		s_list
 {
@@ -103,6 +101,7 @@ long long			ft_atol(char *str);
 int					ft_free_double(void	**ptr);
 int					ft_free_single(void *ptr);
 size_t				ft_double_strlen(const char **str);
-
+int					ft_numlen(char *str);
+int					ft_is_allnum(char **str);
 
 #endif

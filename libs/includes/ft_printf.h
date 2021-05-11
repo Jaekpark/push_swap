@@ -6,19 +6,18 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 14:15:14 by parkjaekw         #+#    #+#             */
-/*   Updated: 2021/05/07 17:05:51 by parkjaekw        ###   ########.fr       */
+/*   Updated: 2021/05/09 20:12:30 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include "../libft/includes/libft.h"
 # include <stdlib.h>
 # include <limits.h>
+# include "../libft/includes/libft.h"
 
 typedef struct	s_option
 {
@@ -28,7 +27,6 @@ typedef struct	s_option
 	int			zero;
 	int			width;
 	int			sign;
-
 }				t_option;
 
 int				ft_printf(const char *format, ...);

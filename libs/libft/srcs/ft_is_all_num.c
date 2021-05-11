@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   ft_is_all_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 18:06:46 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/10 03:00:29 by jaekpark         ###   ########.fr       */
+/*   Created: 2021/05/10 01:43:14 by jaekpark          #+#    #+#             */
+/*   Updated: 2021/05/10 01:43:23 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isnum(char c)
+int		ft_is_allnum(char **str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (-1);
-}
+	int i;
 
-int		ft_strnum(char *str)
-{
 	if (!str)
 		return (-1);
-	while (*str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str)
+	i = 0;
+	while (str[i] != NULL)
 	{
-		if (*str >= '0' && *str <= '9')
-			str++;
-		else
+		if ((ft_strnum(str[i])) == -1)
 			return (-1);
+		i++;
 	}
 	return (1);
 }

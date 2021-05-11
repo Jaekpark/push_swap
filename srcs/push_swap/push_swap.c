@@ -6,21 +6,21 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 17:59:57 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/08 22:15:46 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 18:41:05 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_sort	*s;
-	int 	ret;
+	int		ret;
 
 	s = NULL;
-	if (argc <= 1 || !argv || argc > 20000)
-		return (print_status(ERR, s));
-	else if (!(s = malloc(sizeof(t_sort))))
+	if (argc <= 1 || !argv)
+		return (print_status(END, s));
+	else if (!(s = malloc(sizeof(t_sort))) || argc > 100000)
 		return (print_status(ERR, s));
 	else if ((init_sort(s, argv[0])) == -1)
 		return (print_status(ERR, s));
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		return (print_status(ERR, s));
 	else if (!(init_node_index(s->a, 0)))
 		return (print_status(ERR, s));
-	else if (!(check_size_and_sort_a(s, ft_lstsize(s->a))))
+	else if (!(check_size_and_sort(s, ft_lstsize(s->a))))
 		return (print_status(ERR, s));
 	else if (!(divide_t(s, ft_lstsize(s->a))))
 		return (print_status(ERR, s));
@@ -40,4 +40,3 @@ int main(int argc, char **argv)
 		return (print_status(ERR, s));
 	return (print_status(END, s));
 }
-

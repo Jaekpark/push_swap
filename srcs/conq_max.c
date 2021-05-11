@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:40:41 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/06 22:02:03 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/10 17:09:48 by jaekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	push_for_conquer(t_sort *s, int cnt, int rb_flag)
 			rb(s, cnt);
 	}
 	pa(s, 1);
+	if (s->a->top->idx == s->a->top->prev->idx + 1)
+		sa(s, 1);
 	return (1);
 }
 
