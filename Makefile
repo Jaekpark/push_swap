@@ -13,12 +13,12 @@ OBJS			=	$(patsubst %.c, %.o, $(SRCS))
 PW_OBJ			=	$(patsubst %.c, %.o, $(PW_SRC))
 CK_OBJ			=	$(patsubst %.c, %.o, $(CK_SRC))
 
-SRCS_DIR		=	srcs/
-OBJS_DIR		=	objs/
+SRCS_DIR		=	./srcs/
+OBJS_DIR		=	./objs/
 DEBUG_OBJS_DIR	=	objs_debug/
-INCS_DIR		=	includes/
-PW_DIR			=	srcs/push_swap/
-CK_DIR			=	srcs/checker/
+INCS_DIR		=	./includes/
+PW_DIR			=	./srcs/push_swap/
+CK_DIR			=	./srcs/checker/
 TESTER_PATH		=	push_swap_tester/
 
 SRCS_FILE		=	$(addprefix $(SRCS_DIR), $(SRCS))
@@ -121,7 +121,7 @@ $(DEBUG_OBJS_DIR):
 $(DEBUG_OBJS_DIR)%.o : $(SRCS_DIR)%.c $(INCS_FILE)
 						@$(CC) -c $(DEBUG_FLAG) $(HEADER_FLAG) $< -o $@
 
-norm:			
+norm:			$(SRCS_FILE) $(INCS_FILE)
 				@echo $(CYAN) " - push swap norm check"$(EOC)
 				@norminette $(SRCS_FILE) $(INCS_FILE)
 				@make norm -C $(LIB_DIR)

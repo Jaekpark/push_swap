@@ -6,7 +6,7 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 20:17:05 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/12 03:13:27 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/12 23:27:00 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int		print_status(int status, t_sort *s)
 	}
 	if (s != NULL)
 		clear_sort(s);
-	return (status);
+	if (status == OK || status == KO)
+		return (0);
+	return (-1);
 }

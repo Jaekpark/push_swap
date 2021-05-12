@@ -6,11 +6,11 @@
 /*   By: jaekpark <jaekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:40:41 by jaekpark          #+#    #+#             */
-/*   Updated: 2021/05/10 17:09:48 by jaekpark         ###   ########.fr       */
+/*   Updated: 2021/05/12 22:49:30 by parkjaekw        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static int	push_for_conquer(t_sort *s, int cnt, int rb_flag)
 {
